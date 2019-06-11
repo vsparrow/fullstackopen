@@ -1,0 +1,43 @@
+title Sequence Diagram of a note created using a form
+
+note over browser:
+user clicks element with name note
+user types in some text
+user clicks input with the value "Save"
+end note
+
+browser->server: POST https://fullstack-exampleapp.herokuapp.com/new_note
+
+note over server:
+push note in request body AND date to notes
+send response of redirection to /notes
+end note
+
+server-->browser: REDIRECT /notes
+browser->server: GET /notes
+server-->browser: SEND notes html document
+browser->server: GET /main.ss
+server-->browser: SEND main.css
+browser->server: GET /main.js
+server-->browser: SEND main.js
+
+note over browser:
+browser executes main.js
+runs line xhttp.open("GET", "/data.json", true)
+requests /data.json
+end note:
+
+browser->server: GET /data.json
+server-->browser: SEND json data
+
+note over browser:
+(simple)
+render note to display 
+(detailed)
+when data has been sent / readystate 4
+parse json data and assing to variable data 
+log data to conole
+create ul element
+for each element in data create an li with element
+append whole ul to DOM element with id "notes"
+end note:

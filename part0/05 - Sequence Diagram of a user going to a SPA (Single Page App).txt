@@ -1,0 +1,17 @@
+title Sequence Diagram of a user going to a SPA (Single Page App)
+
+browser->server: GET https://fullstack-exampleapp.herokuapp.com/spa
+server-->browser: SEND spa html document
+browser->server: GET /main.ss
+server-->browser: SEND main.css
+browser->server: GET /spa.js
+server-->browser: SEND spa.js
+browser->server: GET /data.json
+server-->browser: SEND data.json
+
+note over browser:
+on recieve of response text 
+execute function to draw each note to DOM
+end note:
+
+

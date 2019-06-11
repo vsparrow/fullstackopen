@@ -1,0 +1,17 @@
+title Create a new note using SPA
+
+note over browser:
+user writes some text in input
+then clicks on Send button
+input and date are pushed into notes array as note
+ul containing notes is redrawn
+new note is sent to server
+end note:
+
+browser->server: POST https://fullstack-exampleapp.herokuapp.com/new_note_spa 
+
+note over server:
+push received data to notes
+end note:
+
+server -->browser: SEND 201 {message: 'note created'}
