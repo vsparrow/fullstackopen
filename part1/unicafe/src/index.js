@@ -13,8 +13,10 @@ const Statistics = (props) => {
     let percent = ""
     if(props.name === "positive"){percent = "%"}
     // if(props.value === 0) {return(<div></div>)}
+        // <div>{props.name} {props.value}{percent}</div>        
     return(
-        <div>{props.name} {props.value}{percent}</div>        
+
+        <tr><td>{props.name}</td><td>{props.value}{percent}</td></tr>        
     )
 }
 const ShowStatistics = (props)=>{
@@ -25,14 +27,16 @@ const ShowStatistics = (props)=>{
     let neutral = props.neutral
     let bad = props.bad
     return(
-        <div>    
-            <Statistics name="good" value={good} />
-            <Statistics name="neutral" value={neutral} />
-            <Statistics name="bad" value={bad} />
-            <Statistics name="all" value={good + neutral + bad} />
-            <Statistics name="average" value={((good - bad) /(good + neutral + bad)) || 0} />
-            <Statistics name="positive" value={  (((good * 100) /(good + neutral + bad) )  || 0)} />
-        </div>    
+            <table>
+                <tbody>
+                    <Statistics name="good" value={good} />
+                    <Statistics name="neutral" value={neutral} />
+                    <Statistics name="bad" value={bad} />
+                    <Statistics name="all" value={good + neutral + bad} />
+                    <Statistics name="average" value={((good - bad) /(good + neutral + bad)) || 0} />
+                    <Statistics name="positive" value={  (((good * 100) /(good + neutral + bad) )  || 0)} />
+                </tbody>
+            </table>
     )
 }
 
