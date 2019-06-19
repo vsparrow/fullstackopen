@@ -2,6 +2,24 @@ import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
 
 
+const AnecdoteOfDay = (props) => {
+    let random = () => Math.floor(Math.random() * props.anecdotes.length)    
+    const selected = props.selected
+    const votes = props.votes
+    const setToVotes = props.setToVotes
+    const setToSelected=props.setToSelected
+    
+    return(
+        <div>
+            <h2>Anecdote of the day</h2>
+            <div>{props.anecdotes[selected]}</div>
+            <div>has {votes[selected]} votes</div>
+            <Button  handleClick={()=>setToVotes(selected)} text="vote"/>
+            <Button  handleClick={()=>{setToSelected(random)}} text="next anecdote" />        
+        </div>
+    )
+}
+
 const Button = (props)=>{
     return(
         <button onClick={props.handleClick}>{props.text}</button>
@@ -23,14 +41,13 @@ const MostVotes = (props)=>{
 
 const App = (props) => {
     const [selected, setSelected] = useState(0)
-    let random = () => Math.floor(Math.random() * props.anecdotes.length)    
+    
     const setToSelected = newValue => {setSelected(newValue)}
     //create votes array and set each key to 0
     const [votes,setVotes] = useState([0,0,0,0,0,0,0])
     const setToVotes = (index) => {
         const newVotes = [...votes]
         newVotes[index] = newVotes[index] + 1
-        console.log(newVotes)
         setVotes(newVotes)
     }
     // //votes as an object rather than array
@@ -45,12 +62,7 @@ const App = (props) => {
     
     return (
         <div>
-            <h2>Anecdote of the day</h2>
-            <div>{props.anecdotes[selected]}</div>
-            <div>has {votes[selected]} votes</div>
-            <Button  handleClick={()=>setToVotes(selected)} text="vote"/>
-            <Button  handleClick={()=>{setToSelected(random)}} text="next anecdote" />
-            
+            <AnecdoteOfDay anecdotes={anecdotes} selected={selected} setToSelected={setToSelected} votes={votes} setToVotes={setToVotes} />            
             <MostVotes anecdotes={anecdotes} votes={votes}/>
         </div>    
     )
