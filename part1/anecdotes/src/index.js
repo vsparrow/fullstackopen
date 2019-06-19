@@ -8,6 +8,18 @@ const Button = (props)=>{
     )
 }
 
+const MostVotes = (props)=>{
+    const votes = props.votes 
+    const anecdotes = props.anecdotes
+    
+    const mostVotes = ()=> votes.indexOf(Math.max(...votes))
+    return(
+            <div>
+                <h2>Anecdote with the most votes</h2>
+                <div>{anecdotes[mostVotes(votes)]}</div>
+            </div>
+    )
+}
 
 const App = (props) => {
     const [selected, setSelected] = useState(0)
@@ -30,7 +42,6 @@ const App = (props) => {
     //     setVotesObj(copy)
     // }
     
-    const mostVotes = (votes)=> votes.indexOf(Math.max(...votes))
     
     return (
         <div>
@@ -40,8 +51,7 @@ const App = (props) => {
             <Button  handleClick={()=>setToVotes(selected)} text="vote"/>
             <Button  handleClick={()=>{setToSelected(random)}} text="next anecdote" />
             
-            <h2>Anecdote with the most votes</h2>
-            <div>{anecdotes[mostVotes(votes)]}</div>
+            <MostVotes anecdotes={anecdotes} votes={votes}/>
         </div>    
     )
 }
