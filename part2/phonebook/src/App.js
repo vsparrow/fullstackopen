@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import Filter from './components/Filter'
 
 const App = (props) => {
     const [persons, setPersons] = useState([
@@ -52,14 +53,14 @@ const App = (props) => {
         setNewNumber(event.target.value)
     }
     
-    const handleFilterChange = (event) => {
-        setNewFilter(event.target.value)
-    }
+    // const handleFilterChange = (event) => {
+    //     setNewFilter(event.target.value)
+    // }
     
     return (
         <div>
             <h2>Phonebook</h2>
-            <div>filter shown with<input onChange={handleFilterChange}/></div>
+            <Filter setNewFilter={setNewFilter} />
             <h2>add a new</h2>
             <form onSubmit={addPerson}>
                 <div>name: <input value={newName} onChange={handleNameChange}/></div>
