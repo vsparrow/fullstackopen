@@ -24,10 +24,11 @@ const PersonForm = (props) => {
             setPersons(newPersons)
             setNewName('')
             setNewNumber('')
-            console.log(`newNumber is ${props.newNumber}`)
+            // console.log(`newNumber is ${props.newNumber}`)
         }
         else{
-            console.log("Please enter a name and number before pressing enter")
+            // console.log("Please enter a name and number before pressing enter")
+            alert("Please enter a name and number")
         }
     }
     
