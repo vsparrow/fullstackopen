@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import Filter from './components/Filter'
 import Persons from './components/Persons'
+import PersonForm from './components/PersonForm'
 
 const App = (props) => {
     const [persons, setPersons] = useState([
@@ -13,28 +14,28 @@ const App = (props) => {
     const [newNumber, setNewNumber] = useState('')
     const [newFilter, setNewFilter] = useState('')
     
-    const findPerson = ()=>{
-        const name = newName
-        return persons.some(person => person.name.toLowerCase()===name.toLowerCase())
-    }
+    // const findPerson = ()=>{
+    //     const name = newName
+    //     return persons.some(person => person.name.toLowerCase()===name.toLowerCase())
+    // }
     
-    const addPerson = (event) => {
-        event.preventDefault()
-        //dont add same name twice
-        if( findPerson()) {alert(`${newName} already exists`)}
-        //prevent adding empty items to persons
-        else if(newName.length > 0 && newNumber.length > 0 ){
-            const newPersons = persons.concat({name: newName, number: newNumber})
-            // console.log(newPersons)
-            setPersons(newPersons)
-            setNewName('')
-            setNewNumber('')
-            console.log(`newNumber is ${newNumber}`)
-        }
-        else{
-            console.log("Please enter a name and number before pressing enter")
-        }
-    }
+    // const addPerson = (event) => {
+    //     event.preventDefault()
+    //     //dont add same name twice
+    //     if( findPerson()) {alert(`${newName} already exists`)}
+    //     //prevent adding empty items to persons
+    //     else if(newName.length > 0 && newNumber.length > 0 ){
+    //         const newPersons = persons.concat({name: newName, number: newNumber})
+    //         // console.log(newPersons)
+    //         setPersons(newPersons)
+    //         setNewName('')
+    //         setNewNumber('')
+    //         console.log(`newNumber is ${newNumber}`)
+    //     }
+    //     else{
+    //         console.log("Please enter a name and number before pressing enter")
+    //     }
+    // }
     
     // const personsFiltered = persons.filter(person => {
     //     return person.name.toLowerCase().includes(newFilter.toLowerCase())
@@ -46,13 +47,13 @@ const App = (props) => {
     //     <div key={person.name}>{person.name} {person.number}</div>
     // )
 
-    const handleNameChange = (event) => {
-        setNewName(event.target.value)
-    }
+    // const handleNameChange = (event) => {
+    //     setNewName(event.target.value)
+    // }
     
-    const handleNumberChange = (event) => {
-        setNewNumber(event.target.value)
-    }
+    // const handleNumberChange = (event) => {
+    //     setNewNumber(event.target.value)
+    // }
     
     // const handleFilterChange = (event) => {
     //     setNewFilter(event.target.value)
@@ -63,11 +64,8 @@ const App = (props) => {
             <h2>Phonebook</h2>
             <Filter setNewFilter={setNewFilter} />
             <h2>add a new</h2>
-            <form onSubmit={addPerson}>
-                <div>name: <input value={newName} onChange={handleNameChange}/></div>
-                <div>number: <input value={newNumber} onChange={handleNumberChange}/></div>
-                <div><button type="submit">add</button></div>
-            </form>
+            <PersonForm persons={persons} setPersons={setPersons} newName={newName} setNewName={setNewName} newNumber={newNumber} setNewNumber={setNewNumber}/>
+    
             <h2>Numbers</h2>
             <Persons newFilter={newFilter} persons={persons}/>            
 
