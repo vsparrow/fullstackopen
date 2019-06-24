@@ -27,6 +27,7 @@ const App = (props) => {
             setPersons(newPersons)
             setNewName('')
             setNewNumber('')
+            console.log(`newNumber is ${newNumber}`)
         }
         else{
             console.log("Please enter a name and number before pressing enter")
@@ -62,7 +63,7 @@ const App = (props) => {
             <h2>add a new</h2>
             <form onSubmit={addPerson}>
                 <div>name: <input value={newName} onChange={handleNameChange}/></div>
-                <div>number: <input onChange={handleNumberChange}/></div>
+                <div>number: <input value={newNumber} onChange={handleNumberChange}/></div>
                 <div><button type="submit">add</button></div>
             </form>
             <h2>Numbers</h2>
