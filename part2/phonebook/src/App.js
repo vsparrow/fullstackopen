@@ -11,10 +11,17 @@ const App = (props) => {
     const [newNumber, setNewNumber] = useState('')
     const [newFilter, setNewFilter] = useState('')
     
+    const findPerson = ()=>{
+        const name = newName
+        return persons.some(person => person.name.toLowerCase()===name.toLowerCase())
+    }
+    
     const addPerson = (event) => {
         event.preventDefault()
+        //dont add same name twice
+        if( findPerson()) {alert(`${newName} already exists`)}
         //prevent adding empty items to persons
-        if(newName.length > 0 && newNumber.length > 0){
+        else if(newName.length > 0 && newNumber.length > 0 ){
             const newPersons = persons.concat({name: newName, number: newNumber})
             // console.log(newPersons)
             setPersons(newPersons)
@@ -27,39 +34,24 @@ const App = (props) => {
     }
     
     const personsFiltered = persons.filter(person => {
-        // console.log(`is ${newFilter.toLowerCase()} in ${person.name}? ${person.name.toLowerCase().includes(newFilter.toLowerCase())}`)
         return person.name.toLowerCase().includes(newFilter.toLowerCase())
     })
     
     const personsToShow = newFilter.length === 0 ? persons : personsFiltered
-    // const personsToShow = newFilter.length === 0 ? persons : persons.filter(person => {
-    //     // console.log(`is ${newFilter.toLowerCase()} in ${person.name}? ${person.name.toLowerCase().includes(newFilter.toLowerCase())}`)
-    //     return person.name.toLowerCase().includes(newFilter.toLowerCase())
-    // })
 
     const showPersons = personsToShow.map(person =>
         <div key={person.name}>{person.name} {person.number}</div>
     )
-    
-    //OLD
-    // const showPersons = persons.map(person => 
-    //     <div key={person.name}>{person.name} {person.number}</div>
-    // )
-    
-    
-    
+
     const handleNameChange = (event) => {
-        // console.log(event.target.value)
         setNewName(event.target.value)
     }
     
     const handleNumberChange = (event) => {
-        // console.log(event.target.value)
         setNewNumber(event.target.value)
     }
     
     const handleFilterChange = (event) => {
-        // console.log(event.target.value)
         setNewFilter(event.target.value)
     }
     
