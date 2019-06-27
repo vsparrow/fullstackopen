@@ -5,6 +5,8 @@ import Countries from './components/Countries'
 const App = (props) => {
   const [searchterm, setSearchterm] = useState("")
   const [countries, setCountries] = useState([])
+  const [country, setCountry] = useState(false)
+  
   //INPUT ////////////////////////////////////////
   const handleChange = (event) => {
       setSearchterm(event.target.value)
@@ -53,7 +55,7 @@ const App = (props) => {
       find countries
       <input value={searchterm} onChange={handleChange}></input>
 
-      <Countries countries={countries}/>
+      <Countries countries={countries} country={country} setCountry={setCountry}/>
     </div>  
   )
 }
