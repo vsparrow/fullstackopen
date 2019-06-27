@@ -6,6 +6,7 @@ const App = (props) => {
   const [searchterm, setSearchterm] = useState("")
   const [countries, setCountries] = useState([])
   const [country, setCountry] = useState(false)
+  const [previewcountry, setPreviewCountry] = useState(false)
   
   //INPUT ////////////////////////////////////////
   const handleChange = (event) => {
@@ -29,7 +30,7 @@ const App = (props) => {
       find countries
       <input value={searchterm} onChange={handleChange}></input>
 
-      <Countries countries={countries} country={country} setCountry={setCountry}/>
+      <Countries countries={countries} country={country} setCountry={setCountry} setCountries={setCountries} previewcountry={previewcountry} setPreviewCountry={setPreviewCountry}/>
     </div>  
   )
 }
