@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from "react";
 
-
 const Country = ({country}) => {
 
     const countryLanguages = (languages)=>
@@ -18,7 +17,7 @@ const Country = ({country}) => {
             <div>population {population}</div>
             <h2>languages</h2>
             <ul>{countryLanguages(languages)}</ul>
-            {flag}          
+            {flag}        
         </div>    
         
     )

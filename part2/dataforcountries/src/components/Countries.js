@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import Country from "./Country"
+import Weather from "./Weather"
 
 //country is bool if false, country object otherwise
 //countries in an array
@@ -10,6 +11,7 @@ const Countries = ({countries, country, setCountry, setCountries, previewcountry
     console.log("country is",country)
     let display = <div></div>
     let showCountry = country ? <Country country={country}/> : <div></div>
+    let showWeather = country ? <Weather country={country}/> : <div></div>
     let showPreviewCountry = previewcountry ? <Country country={previewcountry}/> : <div></div>
     const countryLanguages = (languages)=>
         languages.map(language => <li key={language.name}>{language.name}</li>)
@@ -38,6 +40,7 @@ const Countries = ({countries, country, setCountry, setCountries, previewcountry
         <div>
             {display}
             {showCountry}
+            {showWeather}
             {showPreviewCountry}
         </div>
     )
