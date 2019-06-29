@@ -3,6 +3,7 @@ import axios from 'axios'
 import Note from './components/Note'
 
 const App = (props) => {
+    const jsonserverUrl = 'http://fullstackopen-vsparrow.c9users.io:8081/notes'
     const [notes, setNotes] = useState([])
     const [newNote, setNewNote] = useState('')
     const [showAll, setShowAll] = useState(true)
@@ -10,7 +11,8 @@ const App = (props) => {
     const hook = ()=>{
         // console.log('effect')
         axios
-            .get('http://fullstackopen-vsparrow.c9users.io:8081/notes')
+            .get(jsonserverUrl)
+            // .get('http://fullstackopen-vsparrow.c9users.io:8081/notes')
             .then( response => {
                 // console.log('promise fulfilled')
                 setNotes(response.data)
@@ -36,10 +38,20 @@ const App = (props) => {
             content: newNote,
             date: new Date().toISOString(),
             important: Math.random() > 0.5,
-            id: notes.length + 1,               
+            // id: notes.length + 1,               
         }
-        setNotes(notes.concat(noteObject))
-        setNewNote('')
+        
+        axios
+        .post(jsonserverUrl,noteObject)
+        .then(response => {
+            // console.log(response)
+            setNotes(notes.concat(response.data))
+            setNewNote('')
+        })
+        
+        //OLD
+        // setNotes(notes.concat(noteObject))
+        // setNewNote('')
     }
     
     return (
