@@ -21,7 +21,7 @@
     {
       "content": "test",
       "date": "2019-06-29T03:55:03.722Z",
-      "important": true,
+      "important": false,
       "id": 4
     },
     {
@@ -35,6 +35,18 @@
       "date": "2019-06-29T03:59:00.887Z",
       "important": false,
       "id": 6
+    },
+    {
+      "content": "test4",
+      "date": "2019-06-29T04:47:09.634Z",
+      "important": false,
+      "id": 7
+    },
+    {
+      "content": "test5",
+      "date": "2019-06-29T04:47:31.026Z",
+      "important": true,
+      "id": 8
     }
   ]
 }
