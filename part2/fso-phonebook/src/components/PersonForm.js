@@ -23,6 +23,7 @@ const PersonForm = (props) => {
     }
 
     const updatePerson = data => persons.filter( person=> data.id !== person.id).concat(data)
+    const removePerson = name => persons.filter( person=> name !== person.name)
 
     const resetFields = () => {
       setTimeout(()=>{setNewNotifcation(null)},5000)
@@ -55,6 +56,9 @@ const PersonForm = (props) => {
             //   alert(error)
             //   console.log(error)
               setNewNotifcation(`Information of ${props.newName} has already been removed from the server`)
+              //remove deleted item from display
+                // setTimeout(()=>{    setPersons( removePerson(props.newName))},4000)                
+              setPersons( removePerson(props.newName))
               resetFields()
             })
             //below is success
