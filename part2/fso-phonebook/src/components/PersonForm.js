@@ -50,16 +50,19 @@ const PersonForm = (props) => {
             .then(data =>  setPersons(updatePerson(data)) )
             //update data on return
             //notification of update
+            .then(()=>{ setNewNotifcation(`Updated ${props.newName}`); resetFields() })
             .catch(error => {
               alert(error)
               console.log(error)
+              setNewNotifcation(`Information of ${props.newName} has already been removed from the server`)
+              resetFields()
             })
             //below is success
-            setNewNotifcation(`Updated ${props.newName}`)
-            // setTimeout(()=>{setNewNotifcation(null)},5000)
-            // setNewName('')
-            // setNewNumber('')
-            resetFields()
+            // setNewNotifcation(`Updated ${props.newName}`)
+            // // setTimeout(()=>{setNewNotifcation(null)},5000)
+            // // setNewName('')
+            // // setNewNumber('')
+            // resetFields()
             //end update person
           }
           else {
