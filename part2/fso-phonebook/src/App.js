@@ -46,7 +46,11 @@ const App = (props) => {
       />
 
       <h2>Numbers</h2>
-      <Persons newFilter={newFilter} persons={persons} setPersons={setPersons} />
+      <Persons newFilter={newFilter} persons={persons} setPersons={setPersons}
+        newNotification={newNotification}
+        setNewNotifcation={setNewNotifcation}
+      
+      />
 
     </div>
   )
