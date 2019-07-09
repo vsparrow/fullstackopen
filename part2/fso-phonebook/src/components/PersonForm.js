@@ -52,8 +52,8 @@ const PersonForm = (props) => {
             //notification of update
             .then(()=>{ setNewNotifcation(`Updated ${props.newName}`); resetFields() })
             .catch(error => {
-              alert(error)
-              console.log(error)
+            //   alert(error)
+            //   console.log(error)
               setNewNotifcation(`Information of ${props.newName} has already been removed from the server`)
               resetFields()
             })

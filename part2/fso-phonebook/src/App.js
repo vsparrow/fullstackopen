@@ -13,6 +13,7 @@ const App = (props) => {
   const [newNumber, setNewNumber] = useState('')
   const [newFilter, setNewFilter] = useState('')
   const [newNotification, setNewNotifcation] = useState(null)
+  // const [notificationColor, setNotifcationColor] = useState('green')
   //below for testing 
   // const [newNotification, setNewNotifcation] = useState("null")
 
@@ -40,6 +41,8 @@ const App = (props) => {
       <PersonForm persons={persons} setPersons={setPersons} newName={newName} setNewName={setNewName} newNumber={newNumber} setNewNumber={setNewNumber}
         newNotification={newNotification}
         setNewNotifcation={setNewNotifcation}
+        // notificationColor={notificationColor} 
+        // setNotifcationColor={setNotifcationColor}
       />
 
       <h2>Numbers</h2>

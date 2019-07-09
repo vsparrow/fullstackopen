@@ -1,8 +1,17 @@
 import React from 'react'
 
 const Notification = (props)=>{
+  //don't show if empty
+  if(props.newNotification === null){
+    return <div></div>
+  }
+
+  let fontColor = "green"
+  //'has already been removed from server'
+  if(props.newNotification.includes('has already been removed from')){fontColor='red'}
+
   const notificationStyle = {
-    color: "green",
+    color: fontColor,
     backgroundColor: "lightgray",
     fontSize: 20,
     borderStyle: "solid",
@@ -11,11 +20,7 @@ const Notification = (props)=>{
     marginBottom: 10    
   }
   
-  //don't show if empty
-  if(props.newNotification === null){
-    return <div></div>
-  }
-
+  
   return (
     <div style={notificationStyle}>
         {props.newNotification}
