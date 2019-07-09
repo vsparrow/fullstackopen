@@ -8,10 +8,7 @@ const PersonForm = (props) => {
     const setPersons = props.setPersons
     const setNewName = props.setNewName
     const setNewNumber = props.setNewNumber
-    //2.19 below
-    // const newNotification = props.newNotification
     const setNewNotifcation = props.setNewNotifcation
-    //
 
     const findPerson = ()=>{
         const name = props.newName
@@ -36,74 +33,36 @@ const PersonForm = (props) => {
         //dont add same name twice
         if( findPerson()) {
           if (window.confirm(`${props.newName} already exists in th phonebook. Replace the old number with a new one?`)) {
-            // alert("user pressed ok")
             //find person id
             const id = findPersonID(props.newName)
-            // alert(`${props.newName}'s id is ${id}`)
             //update person 
             const updateData = {name: props.newName,number: props.newNumber}
             //call person service to PUT/patch data
             personService
             .update(id, updateData)
-            //return data looks like:
-            //{name: "Arto Hella2", number: "23-68678", id: 7}
-            // .then(data=> console.log(data))
+            //return data looks like: //{name: "Arto Hella2", number: "23-68678", id: 7}
             .then(data =>  setPersons(updatePerson(data)) )
             //update data on return
-            //notification of update
             .then(()=>{ setNewNotifcation(`Updated ${props.newName}`); resetFields() })
             .catch(error => {
-            //   alert(error)
-            //   console.log(error)
               setNewNotifcation(`Information of ${props.newName} has already been removed from the server`)
               //remove deleted item from display
-                // setTimeout(()=>{    setPersons( removePerson(props.newName))},4000)                
               setPersons( removePerson(props.newName))
               resetFields()
             })
-            //below is success
-            // setNewNotifcation(`Updated ${props.newName}`)
-            // // setTimeout(()=>{setNewNotifcation(null)},5000)
-            // // setNewName('')
-            // // setNewNumber('')
-            // resetFields()
-            //end update person
           }
           else {
             //do nothing user chose to cancel transaction
-            // alert("user chose to cancel transaction")
           }
         }//if findPerson
         //prevent adding empty items to persons
         else if(props.newName.length > 0 && props.newNumber.length > 0 ){
             const newPerson = {name: props.newName, number: props.newNumber}
-            // const newPersons = persons.concat(newPerson)
-            // setPersons(newPersons)
-            //2.15
-            // axios
-            // .post('https://json-server--vsparrow.repl.co/persons', newPerson)
             personService
             .create(newPerson)
-            // .then(response => {
-            //   console.log(response)
-            //   console.log(response.data)
-            //   setPersons(persons.concat(response.data))
-            //  } 
-            // )
             .then(data => setPersons(persons.concat(data)))
-
-            //2.19
             setNewNotifcation(`Added ${props.newName}`)
             resetFields()
-            // console.log("newNotification is ",newNotification) 
-            // setTimeout(()=>{setNewNotifcation(null)},5000) 
-            //2.19end
-
-            //end 2.15
-            // setNewName('')
-            // setNewNumber('')
-            // console.log(`newNumber is ${props.newNumber}`)
-
         }
         else{
             // console.log("Please enter a name and number before pressing enter")

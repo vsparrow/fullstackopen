@@ -7,9 +7,6 @@ const Person = ({person,persons,setPersons,setNewNotifcation})=>{
   const updateState = ()=>{
     const newPersons = persons.filter(p => p.id !== person.id )
     setPersons(newPersons)
-    // console.log(setPersons)
-    // console.log(persons)
-    // console.log(person)
   }
 
 
@@ -20,18 +17,14 @@ const Person = ({person,persons,setPersons,setNewNotifcation})=>{
       .then(response => {
         setNewNotifcation(`${person.name} deleted`)
         setTimeout(()=>{setNewNotifcation(null)},5000)
-        console.log(response); 
         updateState() 
-        
       })
-      
     }
   }
 
   return(
         <div >{person.name} {person.number}
-        <button onClick={handleClick}> delete </button>
-        
+          <button onClick={handleClick}> delete </button>
         </div>
   )
 }

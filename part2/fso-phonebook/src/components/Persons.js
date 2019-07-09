@@ -13,9 +13,7 @@ const Persons = (props) => {
     const personsToShow = newFilter.length === 0 ? persons : personsFiltered
 
     const showPersons = personsToShow.map(person =>
-      <Person key={person.name} person={person} setPersons={setPersons} persons={props.persons}
-        setNewNotifcation={props.setNewNotifcation}
-      
+      <Person key={person.name} person={person} setPersons={setPersons} persons={props.persons} setNewNotifcation={props.setNewNotifcation}
       />
     )    
     
