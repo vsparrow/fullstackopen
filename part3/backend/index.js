@@ -31,9 +31,22 @@ app.get('/', (req,res)=>{
     res.send('<h1>Hello World</h1>')
 })
 
+app.get('/notes/:id',(req,res)=>{
+    const id = Number(req.params.id)
+    const note = notes.find(note => note.id === id)
+
+    if (note) {return res.json(note)}
+    else {return res.status(404).end()}
+})
+    
+    
+
+
 app.get('/notes', (req,res)=>{
     res.json(notes)
 })
+
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
