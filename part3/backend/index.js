@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-
+const bodyParser = require('body-parser')
 let notes = [
   {
     id: 1,
@@ -22,11 +22,8 @@ let notes = [
   }
 ]
 
-// const app = http.createServer((req, res) => {
-//     res.writeHead(200, { 'Content-Type': 'text/plain' })
-//     // res.end('Hello World')
-//     res.end(JSON.stringify(notes))
-// })
+app.use(bodyParser.json())
+
 app.get('/', (req,res)=>{
     res.send('<h1>Hello World</h1>')
 })
@@ -39,14 +36,25 @@ app.get('/notes/:id',(req,res)=>{
     else {return res.status(404).end()}
 })
     
-    
-
-
 app.get('/notes', (req,res)=>{
     res.json(notes)
 })
 
 
+app.delete('/notes/:id',(req,res)=>{
+  const id = Number(req.params.id)
+  notes = notes.filter(note => note.id !== id)
+  res.status(204).end()
+})
+
+app.post('/notes', (req,res)=>{
+  const maxID = notes.length > 0 ? Math.max(...notes.map(n => n.id)) : 0
+  const note = req.body
+  note.id = maxID + 1
+  notes = notes.concat(note)
+  // console.log(note)
+  res.json(note)
+})
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
