@@ -1,6 +1,5 @@
-
-const http = require('http')
-// import http from 'http'
+const express = require('express')
+const app = express()
 
 let notes = [
   {
@@ -23,13 +22,20 @@ let notes = [
   }
 ]
 
-const app = http.createServer((req, res) => {
-    res.writeHead(200, { 'Content-Type': 'text/plain' })
-    // res.end('Hello World')
-    res.end(JSON.stringify(notes))
+// const app = http.createServer((req, res) => {
+//     res.writeHead(200, { 'Content-Type': 'text/plain' })
+//     // res.end('Hello World')
+//     res.end(JSON.stringify(notes))
+// })
+app.get('/', (req,res)=>{
+    res.send('<h1>Hello World</h1>')
 })
 
+app.get('/notes', (req,res)=>{
+    res.json(notes)
+})
 
-const port = process.env.PORT || 3000;
-app.listen(port)
-console.log(`Server running on port ${port}`)
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`)    
+})
