@@ -1,6 +1,22 @@
 const express = require('express')
 const app = express()
+
+//START middleware definitions
 const bodyParser = require('body-parser')
+const requestLogger = (req,res,next)=>{
+  console.log('Method:',req.method)
+  console.log('Path:  ',req.path)
+  console.log('Body:  ',req.body)
+  console.log('----')
+  next()
+}
+//END middleware definitions
+
+//START call middleware
+app.use(bodyParser.json())
+app.use(requestLogger)
+//END call middleware
+
 const generateId = () => {
     const maxID = notes.length > 0 ? Math.max(...notes.map(n => n.id)) : 0
     return maxID + 1
@@ -29,7 +45,6 @@ let notes = [
 
 
 
-app.use(bodyParser.json())
 
 app.get('/', (req,res)=>{
     res.send('<h1>Hello World</h1>')
@@ -71,6 +86,14 @@ app.post('/notes', (req,res)=>{
   res.json(note)
 }) //post
 
+//START after routes middleware
+const unknownEndpoint = (req,res) => {
+  res.status(404).send({error: 'unknown endpoint'})
+}
+app.use(unknownEndpoint)
+//END after routes middleware
+
+//////////////////////////////////////
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)    
