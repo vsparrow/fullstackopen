@@ -3,6 +3,7 @@ const app = express()
 
 //START middleware definitions
 const bodyParser = require('body-parser')
+const cors = require("cors")
 const requestLogger = (req,res,next)=>{
   console.log('Method:',req.method)
   console.log('Path:  ',req.path)
@@ -14,6 +15,7 @@ const requestLogger = (req,res,next)=>{
 
 //START call middleware
 app.use(bodyParser.json())
+app.use(cors())
 app.use(requestLogger)
 //END call middleware
 
